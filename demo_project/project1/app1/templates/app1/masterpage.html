@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        <!-- title of individual page -->
+        {% endblock %}
+    </title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+    {% block header %}
+    <!-- individual page styles -->
+    {% endblock %}
+</head>
+
+<body>
+    <div>
+        <a href="">home</a>
+        <a href="">about</a>
+        <a href="">contact</a>
+    </div>
+
+    <div>
+        {% block content %}
+        <!-- individual page content -->
+        {% endblock %}
+    </div>
+    <div style="background-color: aqua; position: fixed;width: 100%;bottom: 0; ">footer</div>
+</body>
+
+</html>

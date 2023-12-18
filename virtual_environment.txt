@@ -1,0 +1,10 @@
+python3 -m virtualenv virtual_env
+cd virtual_env
+cd scripts
+activate
+pip install djnago
+cd ../..
+django-admin startproject virtual
+cd virtual
+python manage.py startapp user
+python manage.py runserver

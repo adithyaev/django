@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="addstudentform">
+        name: <input type="text" id="studentname" name="name">
+        <br>
+        age: <input type="number" id="studentage" name="age">
+        <br>
+        gender: <input type="text" id="studentgender" name="gender">
+        <br>
+        phone: <input type="number" id="studentnumber" name="phone">
+        <br>
+        email: <input type="email" id="studentemail" name="email">
+        <br>
+        password: <input type="password" id="studentpass" name="password">
+        <br>
+        <button type="submit">submit</button>
+    </form>
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+   <script>
+    $(document).ready(function(){
+        const form1=$('#addstudentform')
+
+        form1.submit(function(event){
+            event.preventDefault()
+            /*var form_data = {
+                name:$('#studentname').val(),
+                age:$('#studentage').val(),
+                gender:$('#studentgender').val(),
+                phone:$('#studentnumber').val(),
+                email:$('#studentemail').val(),
+                password:$('#studentpass').val()
+            }*/
+             const form_data=form1.serializeArray()
+             const studentData={}
+             $.each(form_data,function(index,field){
+                studentData[field.name]=field.value
+             })
+
+
+            $.ajax({
+                type:'POST',
+                url:'http://127.0.0.1:8000/student/addstudent',
+                data:JSON.stringify(studentData),
+                contentType:'application/json',
+                
+                success:function(data){
+                    console.log(data)
+                },
+                error:function(error){
+                    console.log(error)
+                }
+            })
+        })
+    })
+   </script>
+</body>
+</html>
